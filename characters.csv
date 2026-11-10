@@ -1,0 +1,181 @@
+Character,Polish reading,Romanisation,Type
+ㄱ,,k / g,Consonant
+ㄴ,,n,Consonant
+ㄷ,,t / d,Consonant
+ㄹ,,r / l,Consonant
+ㅁ,,m,Consonant
+ㅂ,,p / b,Consonant
+ㅅ,,s,Consonant
+ㅇ,,silent / ng,Consonant
+ㅈ,,j,Consonant
+ㅊ,,ch,Consonant
+ㅋ,kjo,kʰ,Consonant
+ㅌ,,t,Consonant
+ㅍ,,p,Consonant
+ㅎ,,h,Consonant
+ㄲ,,kk,Double consonant
+ㄸ,,tt,Double consonant
+ㅃ,,pp,Double consonant
+ㅆ,,ss,Double consonant
+ㅉ,,jj,Double consonant
+ㅏ,,a,Vowel
+ㅑ,,ya,Vowel
+ㅓ,,eo,Vowel
+ㅕ,,yeo,Vowel
+ㅗ,,o,Vowel
+ㅛ,,yo,Vowel
+ㅜ,,u,Vowel
+ㅠ,,yu,Vowel
+ㅡ,y,eu,Vowel
+ㅣ,,i,Vowel
+ㅐ,,ae,Compound vowel
+ㅒ,,yae,Compound vowel
+ㅔ,,e,Compound vowel
+ㅖ,,ye,Compound vowel
+ㅘ,,wa,Compound vowel
+ㅙ,,wae,Compound vowel
+ㅚ,,oe,Compound vowel
+ㅝ,,wo,Compound vowel
+ㅞ,,we,Compound vowel
+ㅟ,,wi,Compound vowel
+ㅢ,,ui,Compound vowel
+가,,ka / ga,Syllable
+갸,kja / gja,kya/ gya,Syllable
+거,kaa / gaa,keo / geo,Syllable
+겨,kjaa / gjaa,kyeo / gyeo,Syllable
+고,koo / goo,ko / go,Syllable
+교,kjoo / gjoo,kyo / gyo,Syllable
+구,,ku / gu,Syllable
+규,kjuu / gjuu,kyu / gyu,Syllable
+그,kuu / guu,keu / geu,Syllable
+기,,ki / gi,Syllable
+나,,na,Syllable
+냐,nja,nya,Syllable
+너,,neo,Syllable
+녀,,nyeo,Syllable
+노,noo,no,Syllable
+뇨,njoo,nyo,Syllable
+누,nuu,nu,Syllable
+뉴,njuu,nyu,Syllable
+느,nyy,neu,Syllable
+니,,ni,Syllable
+다,,da,Syllable
+댜,,dya,Syllable
+더,,deo,Syllable
+뎌,,dyeo,Syllable
+도,,do,Syllable
+됴,,dyo,Syllable
+두,,du,Syllable
+듀,,dyu,Syllable
+드,,deu,Syllable
+디,,di,Syllable
+라,,ra,Syllable
+랴,,rya,Syllable
+러,,reo,Syllable
+려,,ryeo,Syllable
+로,,ro,Syllable
+료,,ryo,Syllable
+루,,ru,Syllable
+류,,ryu,Syllable
+르,,reu,Syllable
+리,,ri,Syllable
+마,,ma,Syllable
+먀,,mya,Syllable
+머,,meo,Syllable
+며,,myeo,Syllable
+모,,mo,Syllable
+묘,,myo,Syllable
+무,,mu,Syllable
+뮤,,myu,Syllable
+므,,meu,Syllable
+미,,mi,Syllable
+바,,ba,Syllable
+뱌,,bya,Syllable
+버,,beo,Syllable
+벼,,byeo,Syllable
+보,,bo,Syllable
+뵤,,byo,Syllable
+부,,bu,Syllable
+뷰,,byu,Syllable
+브,,beu,Syllable
+비,,bi,Syllable
+사,,sa,Syllable
+샤,,sya,Syllable
+서,,seo,Syllable
+셔,,syeo,Syllable
+소,,so,Syllable
+쇼,,syo,Syllable
+수,,su,Syllable
+슈,,syu,Syllable
+스,,seu,Syllable
+시,,si,Syllable
+아,,a,Syllable
+야,,ya,Syllable
+어,,eo,Syllable
+여,,yeo,Syllable
+오,,o,Syllable
+요,,yo,Syllable
+우,,u,Syllable
+유,,yu,Syllable
+으,,eu,Syllable
+이,,i,Syllable
+자,,ja,Syllable
+쟈,,jya,Syllable
+저,,jeo,Syllable
+져,,jyeo,Syllable
+조,,jo,Syllable
+죠,,jyo,Syllable
+주,,ju,Syllable
+쥬,,jyu,Syllable
+즈,,jeu,Syllable
+지,,ji,Syllable
+차,,cha,Syllable
+챠,,chya,Syllable
+처,,cheo,Syllable
+쳐,,chyeo,Syllable
+초,,cho,Syllable
+쵸,,chyo,Syllable
+추,,chu,Syllable
+츄,,chyu,Syllable
+츠,,cheu,Syllable
+치,,chi,Syllable
+카,,kʰa,Syllable
+캬,kjaa,kʰya,Syllable
+커,,kʰeo,Syllable
+켜,kjoo,kʰyeo,Syllable
+코,koo,kʰo,Syllable
+쿄,kjoo,kʰyo,Syllable
+쿠,kuu,kʰu,Syllable
+큐,kjuu,kʰyu,Syllable
+크,kyy,kʰeu,Syllable
+키,,kʰi,Syllable
+타,,ta,Syllable
+탸,,tya,Syllable
+터,,teo,Syllable
+텨,,tyeo,Syllable
+토,,to,Syllable
+툐,,tyo,Syllable
+투,,tu,Syllable
+튜,,tyu,Syllable
+트,,teu,Syllable
+티,,ti,Syllable
+파,,pa,Syllable
+퍄,,pya,Syllable
+퍼,,peo,Syllable
+펴,,pyeo,Syllable
+포,,po,Syllable
+표,,pyo,Syllable
+푸,,pu,Syllable
+퓨,,pyu,Syllable
+프,,peu,Syllable
+피,,pi,Syllable
+하,,ha,Syllable
+햐,hjaa,hya,Syllable
+허,ha,heo,Syllable
+혀,hja,hyeo,Syllable
+호,hoo,ho,Syllable
+효,hjoo,hyo,Syllable
+후,huu,hu,Syllable
+휴,hjuu,hyu,Syllable
+흐,hy,heu,Syllable
+히,,hi,Syllable
