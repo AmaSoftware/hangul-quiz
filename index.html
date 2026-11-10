@@ -41,6 +41,11 @@ h1{margin:0;font-size:28px;font-weight:700}
 .mode b{font-size:16px;font-weight:600;color:var(--ink)}.mode span{font-size:13px;color:var(--muted)}
 .mode[aria-pressed="true"]{border:2px solid var(--accent);background:var(--accent-soft)}
 .mode[aria-pressed="true"] b{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;border:1.5px solid var(--line);border-radius:22px;background:var(--card);padding:0 16px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--ink)}
+.chip svg{display:none}
+.chip[aria-pressed="true"]{border:2px solid var(--accent);background:var(--accent-soft);color:var(--accent)}
+.chip[aria-pressed="true"] svg{display:block}
 .actions{margin-top:auto;display:flex;flex-direction:column;gap:10px}
 .primary{height:58px;border:0;border-radius:16px;background:var(--accent);color:#fff;font-size:18px;font-weight:700}
 .secondary{height:50px;border:0;border-radius:16px;background:var(--card);color:var(--ink);font-size:16px;font-weight:600}
@@ -101,6 +106,10 @@ h1{margin:0;font-size:28px;font-weight:700}
       <button type="button" data-len="20">20</button>
       <button type="button" data-len="50">50</button>
     </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <span class="label">Categories</span>
+    <div class="chips" id="cats"></div>
   </div>
   <div style="display:flex;flex-direction:column;gap:10px">
     <span class="label">Pick questions by</span>
@@ -188,12 +197,13 @@ h1{margin:0;font-size:28px;font-weight:700}
   var busy = false;
 
   // ---------- storage ----------
-  function blank() { return { stats: {}, sessions: [], settings: { length: 20, mode: 'least' } }; }
+  function blank() { return { stats: {}, sessions: [], settings: { length: 20, mode: 'least', cats: [] } }; }
   function load() {
     try {
       var d = JSON.parse(localStorage.getItem(KEY));
       if (d && typeof d.stats === 'object' && Array.isArray(d.sessions)) {
         d.settings = d.settings || { length: 20, mode: 'least' };
+        if (!Array.isArray(d.settings.cats)) d.settings.cats = [];
         return d;
       }
     } catch (e) {}
@@ -244,9 +254,44 @@ h1{margin:0;font-size:28px;font-weight:700}
     return out;
   }
 
+  // ---------- categories ----------
+  // settings.cats = [] means All; otherwise the ticked Type values.
+  function categories() {
+    var seen = {}, out = [];
+    items.forEach(function (i) { var t = i.type || 'Other'; if (!seen[t]) { seen[t] = 1; out.push(t); } });
+    return out;
+  }
+  function cleanCats() {
+    var all = categories();
+    data.settings.cats = (data.settings.cats || []).filter(function (c) { return all.indexOf(c) !== -1; });
+    if (data.settings.cats.length === all.length) data.settings.cats = [];
+  }
+  function selected() {
+    var cats = data.settings.cats;
+    if (!cats.length) return items;
+    return items.filter(function (i) { return cats.indexOf(i.type || 'Other') !== -1; });
+  }
+  var TICK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  function renderCats() {
+    var cats = data.settings.cats;
+    var html = '<button type="button" class="chip" data-cat="" aria-pressed="' + (!cats.length) + '">' + TICK + 'All</button>';
+    categories().forEach(function (c) {
+      html += '<button type="button" class="chip" data-cat="' + esc(c) + '" aria-pressed="' + (cats.indexOf(c) !== -1) + '">' + TICK + esc(c) + '</button>';
+    });
+    $('cats').innerHTML = html;
+  }
+  $('cats').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var c = b.dataset.cat, cats = data.settings.cats;
+    if (!c) cats = [];
+    else if (cats.indexOf(c) !== -1) cats = cats.filter(function (x) { return x !== c; });
+    else cats = cats.concat([c]);
+    data.settings.cats = cats; cleanCats(); save(); renderHome();
+  });
+
   // ---------- picking ----------
   function pick(n, mode) {
-    var pool = shuffle(items);
+    var pool = shuffle(selected());
     if (mode === 'least') {
       pool.sort(function (a, b) { return st(a.c).shown - st(b.c).shown; });
     } else if (mode === 'failed') {
@@ -271,11 +316,14 @@ h1{margin:0;font-size:28px;font-weight:700}
       });
       return chosen;
     }
-    var opts = from(items.filter(function (i) { return group(i) === group(q); }));
-    if (opts.length < 3) {
-      var more = from(items).filter(function (it) { return !opts.some(function (o) { return o.c === it.c || clash(o, it); }); });
+    var sel = selected();
+    var pools = [sel, items.filter(function (i) { return group(i) === group(q); }), items];
+    var opts = [];
+    pools.forEach(function (pool) {
+      if (opts.length >= 3) return;
+      var more = from(pool).filter(function (it) { return !opts.some(function (o) { return o.c === it.c || clash(o, it); }); });
       opts = opts.concat(more).slice(0, 3);
-    }
+    });
     return shuffle(opts.concat([q]));
   }
 
@@ -292,6 +340,7 @@ h1{margin:0;font-size:28px;font-weight:700}
     Array.prototype.forEach.call(document.querySelectorAll('#modes button'), function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.mode === data.settings.mode));
     });
+    renderCats();
     $('startBtn').disabled = items.length < 4;
   }
   $('lengths').addEventListener('click', function (e) {
@@ -397,6 +446,7 @@ h1{margin:0;font-size:28px;font-weight:700}
         if (!d || typeof d.stats !== 'object' || !Array.isArray(d.sessions)) throw new Error();
         if (!window.confirm('Replace your current statistics with this backup? This cannot be undone.')) return;
         d.settings = d.settings || data.settings;
+        if (!Array.isArray(d.settings.cats)) d.settings.cats = [];
         data = d; save(); renderStats(); renderHome();
         msg('Backup imported: ' + d.sessions.length + ' sessions.');
       } catch (e) { msg('That file is not a Hangul Quiz backup.'); }
@@ -420,6 +470,7 @@ h1{margin:0;font-size:28px;font-weight:700}
     items = toItems(parseCSV(t));
     var letters = items.filter(function (i) { return group(i) === 'let'; }).length;
     $('countLine').textContent = letters + ' letters and ' + (items.length - letters) + ' syllables';
+    cleanCats(); save();
     renderHome();
   }).catch(function (e) {
     $('countLine').textContent = '';
